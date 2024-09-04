@@ -2,8 +2,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import HomePage from './HomePage';
 import Buy from './Buy';
 import Sell from './Sell';
-import Social from './Social';
-import Charts from './Charts';
+import Community from './Community';
+import SignUp from './SignUp';
+import Login from './Login';
 
 const Body = () => {
   const appRouter = createBrowserRouter([
@@ -16,16 +17,20 @@ const Body = () => {
       element: <Buy />,
     },
     {
-      path: '/social',
-      element: <Social />,
+      path: '/community',
+      element: <Community />,
     },
     {
       path: '/sell',
       element: <Sell />,
     },
     {
-      path: '/charts',
-      element: <Charts />,
+      path: '/signup',
+      element: <SignUp />,
+    },
+    {
+      path: '/login',
+      element: <Login />,
     },
   ]);
 
