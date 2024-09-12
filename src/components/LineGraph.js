@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
 
 const LineGraph = () => {
   const [series] = useState([{
-    name: "Desktops",
-    data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+    name: "Food Waste",
+    data: [150, 200, 280, 350, 400, 450]
   }]);
 
   const [options] = useState({
@@ -16,30 +16,33 @@ const LineGraph = () => {
       }
     },
     dataLabels: {
-      enabled: false
+      enabled: true,
     },
     stroke: {
       curve: 'straight'
     },
     title: {
-      text: 'Product Trends by Month',
-      align: 'left'
+      text: 'Required Food Waste per month',
+      align: 'left',
     },
     grid: {
       row: {
-        colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+        colors: ['#f3f3f3', 'transparent'],
         opacity: 0.5
       },
     },
     xaxis: {
-      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+    },
+    tooltip: {
+      y: {
+        formatter: (val) => `${val} kg`
+      }
     }
   });
 
   return (
-    <div className='m-4 p-4'>
-      <ReactApexChart options={options} series={series} type="line" height={350} />
-    </div>
+    <ReactApexChart options={options} series={series} type="line" height={350} />
   );
 };
 

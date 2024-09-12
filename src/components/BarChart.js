@@ -1,65 +1,43 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
 
-const BarChart = () => {
-  const [series] = useState([
-    {
-      name: 'Net Profit',
-      data: [44, 55, 57, 56, 61, 58, 63, 60, 66],
-    },
-    {
-      name: 'Revenue',
-      data: [76, 85, 101, 98, 87, 105, 91, 114, 94],
-    },
-    {
-      name: 'Free Cash Flow',
-      data: [35, 41, 36, 26, 45, 48, 52, 53, 41],
-    },
-  ]);
+const ApexChart = () => {
+    const [series] = useState([{
+        name: '',
+        data: [50, 75, 110, 140, 180, 220]
+    }]);
 
-  const [options] = useState({
-    chart: {
-      type: 'bar',
-      height: 350,
-    },
-    plotOptions: {
-      bar: {
-        horizontal: false,
-        columnWidth: '55%',
-        endingShape: 'rounded',
-      },
-    },
-    dataLabels: {
-      enabled: false,
-    },
-    stroke: {
-      show: true,
-      width: 2,
-      colors: ['transparent'],
-    },
-    xaxis: {
-      categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
-    },
-    yaxis: {
-      title: {
-        text: '$ (thousands)',
-      },
-    },
-    fill: {
-      opacity: 1,
-    },
-    tooltip: {
-      y: {
-        formatter: (val) => `$ ${val} thousands`,
-      },
-    },
-  });
+    const [options] = useState({
+        chart: {
+            type: 'bar',
+            height: 350,
+        },
+        plotOptions: {
+            bar: {
+                borderRadius: 4,
+                borderRadiusApplication: 'end',
+                horizontal: false,
+            },
+        },
+        title: {
+            text: 'Monthly Carbon Footprint Reduction',
+        },
+        dataLabels: {
+            enabled: false,
+        },
+        xaxis: {
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        },
+        tooltip: {
+            y: {
+                formatter: (val) => `${val} Kg CO<sub>2</sub>`
+            }
+        }
+    });
 
-  return (
-    <div className='m-4 p-4'>
-      <ReactApexChart options={options} series={series} type="bar" height={350} />
-    </div>
-  );
+    return (
+        <ReactApexChart options={options} series={series} type="bar" height={350} />
+    );
 };
 
-export default BarChart;
+export default ApexChart;

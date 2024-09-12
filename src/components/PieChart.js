@@ -1,56 +1,39 @@
-import { useState } from 'react';
-import ReactApexChart from 'react-apexcharts';
+import React from 'react';
+import { Chart } from 'react-google-charts';
+
+const data = [
+  ['Source', 'Percentage'],
+  ['Vegetables', 40],
+  ['Fruits', 25],
+  ['Grains', 15],
+  ['Leafy Vegetables', 10],
+  ['Pulses', 5],
+  ['Other Waste', 5],
+];
+
+const options = {
+  title: null,
+  is3D: true,
+  legend: {
+    textStyle: { fontSize: 12 }, // Font size for the legend text
+  },
+  pieSliceText: 'data',
+  chartArea: { top: 0, left: 0, width: '100%', height: '100%' },
+};
 
 const PieChart = () => {
-  const [series] = useState([25, 15, 44, 55, 41, 17]);
-  const [options] = useState({
-    chart: {
-      width: '100%',
-      height: '100%',
-      type: 'pie',
-    },
-    labels: [
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday',
-    ],
-    theme: {
-      monochrome: {
-        enabled: true,
-      },
-    },
-    plotOptions: {
-      pie: {
-        dataLabels: {
-          offset: -5,
-        },
-      },
-    },
-    grid: {
-      padding: {
-        top: 0,
-        bottom: 0,
-        left: 0,
-        right: 0,
-      },
-    },
-    dataLabels: {
-      formatter(val, opts) {
-        const name = opts.w.globals.labels[opts.seriesIndex];
-        return [name, val.toFixed(1) + '%'];
-      },
-    },
-    legend: {
-      show: false,
-    },
-  });
-
   return (
-    <div className='m-4 p-4'>
-      <ReactApexChart options={options} series={series} type="pie" />
+    <div className='w-full max-w-md mx-auto'>
+      <h1 className='text-lg mb-4 pb-4 text-center'>Distribution Pie Chart</h1>
+      <div className='w-full'>
+        <Chart
+          chartType="PieChart"
+          data={data}
+          options={options}
+          width="100%"
+          height="400px"
+        />
+      </div>
     </div>
   );
 };
